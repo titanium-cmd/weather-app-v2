@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class NewsScreen extends StatelessWidget {
-  const NewsScreen({super.key});
+class FourthScreen extends StatelessWidget {
+  const FourthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text('News screen')),
+      body: Center(child: Text('4th screen')),
     );
   }
 }
