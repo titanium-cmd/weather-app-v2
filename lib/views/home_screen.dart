@@ -98,29 +98,6 @@ class HomeScreen extends StatelessWidget {
                         Weatherlabel(label: '1023.1 pa'),
                       ],
                     ),
-                    // Weatherlabel(
-                    //   label: 'UV Index',
-                    // ),
-                    // SizedBox(height: 20),
-                    // Weatherlabel(
-                    //   label: 'Humidity',
-                    //   value: '55',
-                    // ),
-                    // SizedBox(height: 20),
-                    // Weatherlabel(
-                    //   label: 'Wind Speed',
-                    //   value: '5.00 mph',
-                    // ),
-                    // SizedBox(height: 20),
-                    // Weatherlabel(
-                    //   label: 'Rain Probability',
-                    //   value: '30%',
-                    // ),
-                    // SizedBox(height: 20),
-                    // Weatherlabel(
-                    //   label: 'Pressure',
-                    //   value: '1023.1 pa',
-                    // )
                   ],
                 ),
               )
