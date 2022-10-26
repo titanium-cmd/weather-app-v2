@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -67,31 +67,60 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Column(
-                  children: const [
-                    Weatherlabel(
-                      label: 'UV Index',
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Weatherlabel(label: 'UV Index'),
+                        SizedBox(height: 20),
+                        Weatherlabel(label: 'Humidity'),
+                        SizedBox(height: 20),
+                        Weatherlabel(label: 'Wind Speed'),
+                        SizedBox(height: 20),
+                        Weatherlabel(label: 'Rain Probability'),
+                        SizedBox(height: 20),
+                        Weatherlabel(label: 'Pressure'),
+                      ],
                     ),
-                    SizedBox(height: 20),
-                    Weatherlabel(
-                      label: 'Humidity',
-                      value: '55',
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Weatherlabel(),
+                        SizedBox(height: 20),
+                        Weatherlabel(label: '55',),
+                        SizedBox(height: 20),
+                        Weatherlabel(label: '5.00 mph'),
+                        SizedBox(height: 20),
+                        Weatherlabel(label: '30%'),
+                        SizedBox(height: 20),
+                        Weatherlabel(label: '1023.1 pa'),
+                      ],
                     ),
-                    SizedBox(height: 20),
-                    Weatherlabel(
-                      label: 'Wind Speed',
-                      value: '5.00 mph',
-                    ),
-                    SizedBox(height: 20),
-                    Weatherlabel(
-                      label: 'Rain Probability',
-                      value: '30%',
-                    ),
-                    SizedBox(height: 20),
-                    Weatherlabel(
-                      label: 'Pressure',
-                      value: '1023.1 pa',
-                    )
+                    // Weatherlabel(
+                    //   label: 'UV Index',
+                    // ),
+                    // SizedBox(height: 20),
+                    // Weatherlabel(
+                    //   label: 'Humidity',
+                    //   value: '55',
+                    // ),
+                    // SizedBox(height: 20),
+                    // Weatherlabel(
+                    //   label: 'Wind Speed',
+                    //   value: '5.00 mph',
+                    // ),
+                    // SizedBox(height: 20),
+                    // Weatherlabel(
+                    //   label: 'Rain Probability',
+                    //   value: '30%',
+                    // ),
+                    // SizedBox(height: 20),
+                    // Weatherlabel(
+                    //   label: 'Pressure',
+                    //   value: '1023.1 pa',
+                    // )
                   ],
                 ),
               )
@@ -104,24 +133,14 @@ class HomeScreen extends StatelessWidget {
 }
 
 class Weatherlabel extends StatelessWidget {
-  final String label;
-  final String? value;
-  const Weatherlabel({super.key, required this.label, this.value = ''});
+  final String? label;
+  const Weatherlabel({super.key, this.label = ''});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.w700),
-        ),
-        Text(
-          value!,
-          style: const TextStyle(fontWeight: FontWeight.w700),
-        )
-      ],
+    return Text(
+      label!,
+      style: const TextStyle(fontWeight: FontWeight.w700),
     );
   }
 }
