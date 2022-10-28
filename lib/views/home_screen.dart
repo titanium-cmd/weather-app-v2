@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app_v2/controllers/weather_controller.dart';
 import 'package:weather_app_v2/models/weather_model.dart';
 
@@ -11,11 +14,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final WeatherController _weatherController = WeatherController();
+  String? country = '', locality = '';
 
   @override
   void initState() {
-    _weatherController.getWeatherData();
+    getUserLocation();
     super.initState();
+  }
+
+  void getUserLocation() async {
+    Position position = await _weatherController.determinePosition();
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    country = placemarks[0].country;
+    locality = placemarks[0].locality;
+    setState(() {});
   }
 
   double convertToCelcius({double? val}) {
@@ -24,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final currentDate = DateFormat('dd-MMM-yy').format(DateTime.now());
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,16 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.location_on),
+                      children: [
+                        const Icon(Icons.location_on),
                         Text(
-                          'Accra, Ghana',
-                          style: TextStyle(fontWeight: FontWeight.w700),
+                          '$locality, $country',
+                          style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
                       ],
                     ),
                     const SizedBox(height: 20),
-                    const Text('20-Sep-22'),
+                    Text(currentDate),
                     Container(
                       margin: const EdgeInsets.only(top: 40, bottom: 50),
                       padding: const EdgeInsets.all(16),
